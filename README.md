@@ -19,7 +19,15 @@ conda activate rlds_env
 If you want to manually create an environment, the key packages to install are `tensorflow`, 
 `tensorflow_datasets`, `tensorflow_hub`, `apache_beam`, `matplotlib`, `plotly` and `wandb`.
 
+## Quick Start For Transforming LIBERO HDF5 to RLDS
+Example for LIBERO Object:
 
+In LIBERO_Object/LIBERO_Object_dataset_builder.py, modify the dataset path at the end of the file.
+
+```
+cd LIBERO_Object
+tfds build
+```
 ## Run Example RLDS Dataset Creation
 
 Before modifying the code to convert your own dataset, run the provided example dataset creation script to ensure

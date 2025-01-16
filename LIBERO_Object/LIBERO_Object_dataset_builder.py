@@ -26,6 +26,7 @@ def _generate_examples(paths) -> Iterator[Tuple[str, Any]]:
             joint_states = F['data'][f"demo_{demo_id}"]["obs"]["joint_states"][()]
             images = F['data'][f"demo_{demo_id}"]["obs"]["agentview_rgb"][()]
             wrist_images = F['data'][f"demo_{demo_id}"]["obs"]["eye_in_hand_rgb"][()]
+            episode_id = F['data'][f"demo_{demo_id}"]["episode_id"][()].decode("utf-8")
 
         # compute language instruction
         raw_file_string = os.path.basename(episode_path).split('/')[-1]
@@ -152,6 +153,9 @@ class LIBEROObject(MultiThreadedDatasetBuilder):
                     'language_instruction': tfds.features.Text(
                         doc='Language Instruction.'
                     ),
+                    'episode_id': tfds.features.Text(
+                        doc='Unique ID for the episode LIBERO_Task_Suite_Task_Num_demo_Num.'
+                    )
                 }),
                 'episode_metadata': tfds.features.FeaturesDict({
                     'file_path': tfds.features.Text(
